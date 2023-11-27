@@ -33,7 +33,7 @@ export default function About() {
             setBtnColor({
                 color: 'black',
                 backgroundColor: 'white'
-                
+
             })
         }
     }
