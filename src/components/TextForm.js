@@ -3,34 +3,56 @@ import React, { useState } from 'react'
 export default function TextForm(props) {
     const handleUpClick = () => {
         // console.log("Upper case was clicked" + text)
-        let newText = text.toUpperCase()
-        setText(newText)
+        let newText = text.toUpperCase();
+        setText(newText);
+        if (newText.length === 0) {
+            props.showAlert("Please Type Something", "warning");
+        }
+        else {
+            props.showAlert("Converted to Uppercase", "success");
+        }
     }
     const handleLowClick = () => {
         // console.log("Upper case was clicked" + text)
-        let newText = text.toLowerCase()
-        setText(newText)
+        let newText = text.toLowerCase();
+        setText(newText);
+        if (newText.length === 0) {
+            props.showAlert("Please Type Something", "warning");
+        }
+        else {
+            props.showAlert("Converted to Lowercase", "success");
+        }
     }
     const handleCopyClick = () => {
-        var text = document.getElementById("myBox")
-        navigator.clipboard.writeText(text.value)
+        var text = document.getElementById("myBox");
+        console.log(text);
+        console.log(text.length);
+        navigator.clipboard.writeText(text.value);
+        props.showAlert("Copied to clipboard", "success");
     }
     const handleExtraSpace = () => {
-        let newText = text.split(/[ ]+/)
-        setText(newText.join(" "))
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(" "));
+        if (newText.length === 1) {
+            props.showAlert("There is no extra space", "warning");
+        }
+        else {
+            props.showAlert("Extra Space Removed", "success");
+        }
     }
     const handleClearClick = () => {
-        // console.log("Upper case was clicked" + text)
-        let newText = ""
-        setText(newText)
+        // console.log("Upper case was clicked" + text);
+        let newText = "";
+        setText(newText);
+        props.showAlert("Reset Successfully", "success");
     }
     const handleOnChange = (event) => {
-        // console.log("onchange")
-        setText(event.target.value)
+        // console.log("onchange");
+        setText(event.target.value);
     }
 
-    const [text, setText] = useState("")
-    // setText("New Text")
+    const [text, setText] = useState("");
+    // setText("New Text");
     return (
         <>
             <div className="container" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
