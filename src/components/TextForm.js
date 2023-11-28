@@ -25,8 +25,6 @@ export default function TextForm(props) {
     }
     const handleCopyClick = () => {
         var text = document.getElementById("myBox");
-        console.log(text);
-        console.log(text.length);
         navigator.clipboard.writeText(text.value);
         props.showAlert("Copied to clipboard", "success");
     }
